@@ -30,7 +30,7 @@ reader.close()
 driving_video = [resize(frame, (256, 256))[..., :3] for frame in driving_video]
 
 generator, kp_detector = load_checkpoints(config_path='config/vox-256.yaml', 
-                            checkpoint_path='https://github.com/nicolalandro/first-order-model/releases/download/0.1/vox-adv-cpk.pth.tar')
+                            checkpoint_path='./vox-adv-cpk.pth.tar')
 
 predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=True)
 
