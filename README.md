@@ -171,3 +171,13 @@ Citation:
   year = {2019}
 }
 ```
+
+## Use on colab
+```
+!git clone https://github.com/nicolalandro/first-order-model.git
+!cd first-order-model && git pull
+!cd first-order-model && wget https://github.com/nicolalandro/first-order-model/releases/download/0.1/vox-adv-cpk.pth.tar
+!cd first-order-model && python3 use.py
+```
+
+
