@@ -14,6 +14,9 @@ from demo import make_animation
 parser = argparse.ArgumentParser(description='Deep fake.')
 parser.add_argument('--img', type=str, default='./cartoons-01.png')
 parser.add_argument('--video', type=str, default='./00.mp4')
+parser.add_argument('--config', type=str, default='config/vox-256.yaml')
+parser.add_argument('--model', type=str, default='./vox-adv-cpk.pth.tar')
+parser.add_argument('--output', type=str, default='../generated.mp4')
 
 args = parser.parse_args()
 
@@ -35,10 +38,10 @@ reader.close()
 
 driving_video = [resize(frame, (256, 256))[..., :3] for frame in driving_video]
 
-generator, kp_detector = load_checkpoints(config_path='config/vox-256.yaml', 
-                            checkpoint_path='./vox-adv-cpk.pth.tar')
+generator, kp_detector = load_checkpoints(config_path=args.config, 
+                            checkpoint_path=args.model)
 
 predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=True)
 
 #save resulting video
-imageio.mimsave('../generated.mp4', [img_as_ubyte(frame) for frame in predictions], fps=fps)
+imageio.mimsave(arg.output, [img_as_ubyte(frame) for frame in predictions], fps=fps)
