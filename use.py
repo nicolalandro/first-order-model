@@ -44,4 +44,4 @@ generator, kp_detector = load_checkpoints(config_path=args.config,
 predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=True)
 
 #save resulting video
-imageio.mimsave(arg.output, [img_as_ubyte(frame) for frame in predictions], fps=fps)
+imageio.mimsave(args.output, [img_as_ubyte(frame) for frame in predictions], fps=fps)
