@@ -1,5 +1,6 @@
 import imageio
 import numpy as np
+import argparse
 
 from skimage.transform import resize
 from skimage import img_as_ubyte
@@ -10,9 +11,14 @@ warnings.filterwarnings("ignore")
 from demo import load_checkpoints
 from demo import make_animation
 
+parser = argparse.ArgumentParser(description='Deep fake.')
+parser.add_argument('--img', type=str, default='./cartoons-01.png')
+parser.add_argument('--video', type=str, default='./00.mp4')
 
-source_image = imageio.imread('./cartoons-01.png')
-reader = imageio.get_reader('./00.mp4')
+args = parser.parse_args()
+
+source_image = imageio.imread(args.img)
+reader = imageio.get_reader(args.video)
 
 
 #Resize image and video to 256x256
